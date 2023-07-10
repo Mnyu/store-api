@@ -3,12 +3,14 @@ const express = require('express');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const connectDB = require('./db/connect');
+const productsRouter = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // middlewares
 app.use(express.json());
+app.use('/api/v1/products', productsRouter);
 
 app.get('/', (req, res) => {
   res.send('<h1>Store API</h1><a href="/api/v1/products">Products Route</a>');
